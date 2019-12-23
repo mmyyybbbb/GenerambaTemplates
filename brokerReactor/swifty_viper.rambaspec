@@ -1,0 +1,18 @@
+# Template information section
+name: "brokerReaCTOR"
+summary: ""
+author: ""
+version: "0.9.0"
+
+code_files:
+# View layer
+- {name: ViewController.swift, path: Code/viewcontroller.swift.liquid}
+
+# Coordinator layer
+- {name: Coordinator.swift, path: Code/coordinator.swift.liquid}
+
+# Interactor layer
+- {name: Interactor.swift, path: Code/interactor.swift.liquid}
+
+# Reactor layer
+- {name: Reactor.swift, path: Code/reactor.swift.liquid}

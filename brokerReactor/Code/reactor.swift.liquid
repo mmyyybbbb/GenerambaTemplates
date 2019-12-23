@@ -1,0 +1,61 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import RxSwift
+
+public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor {
+    /// MARK: Public properties    
+
+    public typealias Coordinator = {{ module_info.name }}Coordinator
+    public typealias Interactor = {{ module_info.name }}Interactor
+    
+    public enum Action {
+
+    }
+    
+    public enum Mutation {
+
+    }
+    
+    public struct State {
+
+    }
+
+    /// MARK: Private properties
+
+    /// MARK: Init
+
+    override init() {
+        super.init()
+    }
+
+    /// MARK: Public functions
+    
+    public func mutate(action: Action) -> Observable<Mutation> {
+        switch action {
+            default: break
+        }
+        return .empty()
+    }
+    
+    public func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        
+        switch mutation {
+            default: break
+        }
+        
+        return state
+    }
+}
+
+/// MARK: Private functions
+extension {{ module_info.name }}Reactor {
+
+}
+
