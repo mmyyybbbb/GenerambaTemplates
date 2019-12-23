@@ -7,8 +7,10 @@
 //
 
 import RxSwift
+import ModuleCore
 
 public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor {
+    
     /// MARK: Public properties    
 
     public typealias Coordinator = {{ module_info.name }}Coordinator
@@ -25,6 +27,8 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
     public struct State {
 
     }
+
+    public let initialState = State()
 
     /// MARK: Private properties
 
