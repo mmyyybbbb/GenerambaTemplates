@@ -1,0 +1,18 @@
+# Template information section
+name: "swifty_apiServices"
+summary: ""
+author: "BCS"
+version: "0.9.0"
+
+code_files:
+# ApiService 
+- {name: Service.swift, path: Code/ApiService.swift.liquid}
+
+# ApiService+RequestParams
+- {name: Service+RequestParams.swift, path: Code/ApiService+RequestParams.swift.liquid}
+
+# ApiService+Response.swift
+- {name: Service+Response.swift.swift, path: Code/ApiService+Response.swift.liquid}
+
+# ApiServiceConfigurator
+- {name: ServiceConfigurator.swift, path: Code/ApiServiceConfigurator.swift.liquid}

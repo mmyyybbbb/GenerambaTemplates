@@ -1,0 +1,23 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Moya
+import APICore
+
+public final class {{ module_info.name }}ServConfigurator: DefaultAPIServiceConfigurator  {
+    public override func isUnauthorized(response: Response) -> Bool {
+        return response.statusCode == 401
+    }
+}
+
+public extension URL {
+    struct {{ module_info.name }} {
+        public static let prod = URL(string: "<#base url#>")!
+        public static let test = URL(string: "<#base url#>")!
+    }
+}

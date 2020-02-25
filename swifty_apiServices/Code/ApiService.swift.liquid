@@ -1,0 +1,71 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import APICore
+import Moya
+
+
+//MARK: -
+public final class {{ module_info.name }}Service : APIService<{{ module_info.name }}Service.Methods, {{ module_info.name }}ServiceConfigurator>  {
+    
+    override public var authStrategy: AuthStrategy { return .authorizationHeader  }
+    
+    public enum Methods {
+        case <#case name#>
+        case <#case name#>(<#type name#>RequestParams)
+    }
+}
+
+//MARK: - Тип авторизации
+extension {{ module_info.name }}Service.Methods : AccessTokenAuthorizable {
+    public var authorizationType: AuthorizationType { return .bearer  }
+}
+
+//MARK: - Methods
+extension {{ module_info.name }}Service.Methods : APIServiceMethod {
+    public var methodPath: MethodPath {
+        switch self {
+        case .<#case name#> : return (.get, "<#api path#>")
+        case .<#case name#> : return (.post, "<#api path#>")
+        }
+    }
+    
+    public var params: MethodParams {
+        var body: [String: Any] = [:]
+        var url: [String: Any] = [:]
+        
+        switch self {
+        case let .<#case name#>(val): url = val.asDictionary
+        case let .<#case name#>(val): body = val.asDictionary
+        default: break
+        }
+        
+        return MethodParams(inUrl: url, inBody: [:])
+    }
+}
+
+//MARK: - Mocks
+public extension {{ module_info.name }}Service.Methods {
+    
+    enum MockKey: String, MockKeyType {
+        case <#case name#>
+    }
+    
+    var mockKey: MockKey? {
+        switch self {
+        case .<#case name#>: return .<#case name#>
+        }
+    }
+}
+
+//MARK: - SampleData
+extension {{ module_info.name }}Service.Methods.MockKey : MockSampleData {
+    public var sampleData: String? {
+        return nil
+    }
+}

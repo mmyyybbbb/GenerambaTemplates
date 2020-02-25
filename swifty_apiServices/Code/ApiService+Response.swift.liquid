@@ -1,0 +1,20 @@
+//
+//  {{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+/// Модели данных в ответах {{ module_info.name }}Service
+public extension {{ module_info.name }}Service {
+    
+    struct <#type name#>Response: Decodable {
+        public let <#name#>: <#type name#>
+        
+        
+        enum CodingKeys: String, CodingKey {
+            case <#name#> = "<#custom name#>"
+        }
+    }
+}
