@@ -8,41 +8,39 @@
 
 import RxSwift
 import ModuleCore
+import BrokerData
 
 public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor {
     
-    /// MARK: Public properties    
-
+    /// MARK: Public properties   
     public typealias Coordinator = {{ module_info.name }}Coordinator
     public typealias Interactor = {{ module_info.name }}Interactor
     
     public enum Action {
-
+        case initLoad
     }
     
     public enum Mutation {
-
+        case setBusy(Bool)
+        case setInitData(<#InitData#>)
     }
     
-    public struct State {
-
+    public struct State { 
+        var isBusy = false
+        var initData: <#InitData#>? = nil
     }
 
     public let initialState = State()
-
-    /// MARK: Private properties
-
-    /// MARK: Init
-
+ 
     override init() {
         super.init()
     }
 
-    /// MARK: Public functions
-    
+    /// MARK: Public functions 
     public func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-            default: break
+        case .initLoad:
+            loadData() 
         }
         return .empty()
     }
@@ -50,8 +48,9 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
     public func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         
-        switch mutation {
-            default: break
+        switch mutation { 
+        case let .setInitData(val): state.data = val 
+        case let .setBusy(val): state.isBusy = val 
         }
         
         return state
@@ -59,7 +58,20 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
 }
 
 /// MARK: Private functions
-extension {{ module_info.name }}Reactor {
+fileprivate extension {{ module_info.name }}Reactor {
+    func loadData() {
+        interact(interactor.<#name#>,
+                 complete: {{ module_info.name }}Reactor.dataLoaded,
+                 error: {{ module_info.name }}Reactor.interactionFailed,
+                 inProgress: Mutation.isBusy)
+    }
 
+    func dataLoaded(data: <#InitData#>) {
+        make(.setInitData(data))
+    }
+
+    func interactionFailed(_ error: Error = InterruptedError()) {
+        debugPrint("interactionFailed", error)
+    }
 }
 

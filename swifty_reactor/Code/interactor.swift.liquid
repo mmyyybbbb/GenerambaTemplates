@@ -6,8 +6,12 @@
 //  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import BrokerData
 
 public final class {{ module_info.name }}Interactor {
-    
+ 
+ 	func loadInitData() -> Single<<#InitData#>> {
+ 		BroData.<#load#>
+ 	}
 }

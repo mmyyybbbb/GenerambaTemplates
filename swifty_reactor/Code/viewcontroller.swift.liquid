@@ -6,30 +6,39 @@
 //  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
 //
 
-import BrokerUIKit
+import RxSwift 
 import ModuleCore
+import BrokerUIKit
+import BrokerData 
 import SnapKit
-import RxSwift
 
 public final class {{ module_info.name }}VC: BaseVC, SceneView {
     
-    /// MARK: Public properties    
-
-    /// MARK: Private properties
-
-    /// MARK: ViewController live cycle
-
+    private lazy var header = HeaderView(config: .init(height: .byContent, bgColor: .clear, navigator: .clear))
+    private let preloader = Preloader()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        // analytic(...)
+        fire(action: .initLoad)
     }
 
     /// MARK: Public functions
 
     override public func setupViewAndConstraints() {
-    	
+    	add(header: header)
+        view.backgroundColor = UIColor.pallete.background
+        view.layoutMargins = .zero
+        view.add(subviews: preloader)
+        preloader.snp.makeToSuperview(.edges)
     }
     
     public func bind(reactor: {{ module_info.name }}Reactor) {
+        let binder = ReactorBindings(reactor: reactor, defaultDisposeBag: disposeBag)
+
+        binder.fire(action: .buttonTapped, on: button.rx.animTap) 
+        binder.map(\.isBusy, to: preloader.inProgress) 
         
     }
 }
