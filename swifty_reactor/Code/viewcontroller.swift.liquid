@@ -12,6 +12,16 @@ import BrokerUIKit
 import BrokerData 
 import SnapKit
 
+ /// Список новостей для интрумента
+ func {{ module_info.name | downcase }}() -> Scene {
+    let vc = {{ module_info.name }}VC()
+    let reactor = {{ module_info.name }}Reactor()
+    reactor.inject({{ module_info.name }}Coordinator(scene: vc))
+    reactor.inject({{ module_info.name }}Interactor())
+    vc.inject(reactor)
+    return vc
+}
+
 public final class {{ module_info.name }}VC: BaseVC, SceneView {
     
     // MARK: - View properties
