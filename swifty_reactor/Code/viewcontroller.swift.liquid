@@ -14,9 +14,15 @@ import SnapKit
 
 public final class {{ module_info.name }}VC: BaseVC, SceneView {
     
+    // MARK: - View properties
+
     private lazy var header = HeaderView(config: .init(height: .byContent, bgColor: .clear, navigator: .clear))
     private let preloader = Preloader()
+
+    // MARK: - Private properties
     
+    // MARK: - 
+
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +30,7 @@ public final class {{ module_info.name }}VC: BaseVC, SceneView {
         fire(action: .initLoad)
     }
 
-    /// MARK: Public functions
+    // MARK: - Public functions
 
     override public func setupViewAndConstraints() {
     	add(header: header)
@@ -43,7 +49,7 @@ public final class {{ module_info.name }}VC: BaseVC, SceneView {
     }
 }
 
-/// MARK: Private functions
+// MARK: - Private functions
 extension {{ module_info.name }}VC {
   
 }

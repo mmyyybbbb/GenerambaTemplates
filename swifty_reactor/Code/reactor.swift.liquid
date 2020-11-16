@@ -12,7 +12,7 @@ import BrokerData
 
 public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor {
     
-    /// MARK: Public properties   
+    // MARK: - Public properties   
     public typealias Coordinator = {{ module_info.name }}Coordinator
     public typealias Interactor = {{ module_info.name }}Interactor
     
@@ -31,12 +31,16 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
     }
 
     public let initialState = State()
- 
+
+    // MARK: - Private properties
+
+    // MARK: - init
+    
     override init() {
         super.init()
     }
 
-    /// MARK: Public functions 
+    // MARK: - Public functions 
     public func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .initLoad:
@@ -57,7 +61,7 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
     }
 }
 
-/// MARK: Private functions
+// MARK: - Private functions
 fileprivate extension {{ module_info.name }}Reactor {
     func loadData() {
         interact(interactor.<#name#>,
