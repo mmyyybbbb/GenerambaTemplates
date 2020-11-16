@@ -22,12 +22,10 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
     
     public enum Mutation {
         case setBusy(Bool)
-        case setInitData(<#InitData#>)
     }
     
     public struct State { 
         var isBusy = false
-        var initData: <#InitData#>? = nil
     }
 
     public let initialState = State()
@@ -53,7 +51,6 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
         var state = state
         
         switch mutation { 
-        case let .setInitData(val): state.data = val 
         case let .setBusy(val): state.isBusy = val 
         }
         
@@ -64,15 +61,15 @@ public final class {{ module_info.name }}Reactor: BaseReactor, FullSceneReactor 
 // MARK: - Private functions
 fileprivate extension {{ module_info.name }}Reactor {
     func loadData() {
-        interact(interactor.<#name#>,
-                 complete: {{ module_info.name }}Reactor.dataLoaded,
-                 error: {{ module_info.name }}Reactor.interactionFailed,
-                 inProgress: Mutation.isBusy)
+        // interact(interactor.<#name#>,
+        //          complete: {{ module_info.name }}Reactor.dataLoaded,
+        //          error: {{ module_info.name }}Reactor.interactionFailed,
+        //          inProgress: Mutation.isBusy)
     }
 
-    func dataLoaded(data: <#InitData#>) {
-        make(.setInitData(data))
-    }
+    // func dataLoaded(data: <#InitData#>) {
+    //     make(.setInitData(data))
+    // }
 
     func interactionFailed(_ error: Error = InterruptedError()) {
         debugPrint("interactionFailed", error)
